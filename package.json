@@ -37,12 +37,13 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
-    "angular": "^1.4.4",
-    "lodash": "^3.10.1",
+    "firebase": "^2.2.9",
+    "object-assign": "^3.0.0",
     "react": "^0.13.0",
     "react-dnd": "^1.1.4",
-    "react-dragula": "^1.0.6",
     "react-redux": "^0.8.2",
-    "redux": "^1.0.0"
+    "redux": "^1.0.0",
+    "redux-logger": "0.0.3",
+    "redux-thunk": "^0.1.0"
   }
 }

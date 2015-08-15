@@ -16,7 +16,6 @@ export default class DndContainer extends Component {
 
   render() {
     const { users, seats } = this.props;
-
     return (
       <div>
         <h1>Resit</h1>

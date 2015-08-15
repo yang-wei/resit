@@ -1,12 +1,11 @@
 import React from 'react';
-import { createStore } from 'redux';
+import configureStore from './configureStore';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import resitApp from './reducers';
 
 React.render(
-  <Provider store={createStore(resitApp)}>
+  <Provider store={configureStore()}>
     {() => <App/>} 
   </Provider>,
   document.getElementById('root')

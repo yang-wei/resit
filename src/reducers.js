@@ -1,23 +1,26 @@
 import { combineReducers } from 'redux';
-import { REGISTER_USER } from './actions';
+import assign from 'object-assign';
+
+import { REGISTER_USER, SYNC_DATA } from './actions';
 import { itemTypes } from './constants';
 
 let initialState = { 
-  users: [
-    {name : 'Keigo', seatNumber: -1, type: itemTypes.STUDENT },
-    {name : 'Missan', seatNumber: -1, type: itemTypes.STUDENT},
-    {name : 'Yoppi', seatNumber: -1, type: itemTypes.STUDENT}
-  ],
+  users: [],
   seats: []
 }
  
 function users(state = initialState, action) {
   switch (action.type) {
     case REGISTER_USER:
-      return [...state.users, {
-        name: action.name,
-        seatNumber: -1
-      }];
+      return assign({},
+        state,
+        { users: [...state.users, action.newUser]}
+      );
+    case SYNC_DATA:
+      return assign({},
+        state, 
+        { users: action.userData}
+      );
     default:
       return state;
   }

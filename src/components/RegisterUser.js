@@ -18,7 +18,7 @@ export default class RegisterUser extends Component {
       return;
     }
     // add to firebase
-    console.log(name)
+    this.props.onSubmit(name)
     node.value = '';
     return;
   }
