@@ -14,7 +14,8 @@ const style = {
 const boxSource = {
   beginDrag(props) {
     return {
-      name: props.name
+      name: props.name,
+      _id: props._id,
     };
   }
 };
@@ -46,4 +47,10 @@ export default class Box extends Component {
             </div>
          );
   }
+}
+
+
+Box.defaultProps = {
+  name: '',
+  _id: null,
 }

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import assign from 'object-assign';
 
-import { REGISTER_USER, SYNC_DATA } from './actions';
+import { REGISTER_USER, REGISTER_SEAT, SYNC_DATA } from './actions';
 import { itemTypes } from './constants';
 
 let initialState = { 
@@ -9,21 +9,20 @@ let initialState = {
   seats: []
 }
  
-function users(state = initialState, action) {
+function appReducer(state = initialState, action) {
   switch (action.type) {
     case REGISTER_USER:
-      return assign({},
-        state,
-        { users: [...state.users, action.newUser]}
-      );
+      return state;
+    case REGISTER_SEAT:
+      return state
     case SYNC_DATA:
       return assign({},
-        state, 
-        { users: action.userData}
+        state,
+        action.data
       );
     default:
       return state;
   }
 }
 
-export default users;
+export default appReducer;

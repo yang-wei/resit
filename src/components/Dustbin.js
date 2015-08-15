@@ -63,6 +63,6 @@ export default class Dustbin extends Component {
   }
 }
 
-
-
-<a href="{% urlFor(awdawd) %}">A</a>
+Dustbin.defaultProps = {
+  lastDroppedItem: null
+}

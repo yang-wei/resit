@@ -1,20 +1,16 @@
 import Firebase from 'firebase';
-import assign from 'object-assign';
 import { firebaseUrl, itemTypes } from './constants';
+
+import { _transform, createNewProfile, createNewSeat } from './utils';
 
 const baseRef = new Firebase(firebaseUrl);
 const usersRef = baseRef.child('users');
+const seatsRef = baseRef.child('seats');
 
 export const REGISTER_USER = 'REGISTER_USER';
+export const REGISTER_SEAT = 'REGISTER_SEAT';
 export const SYNC_DATA = 'SYNC_DATA';
-
-function createNewProfile(name) {
-  return {
-    name: name,
-    seatNumber: -1,
-    type: itemTypes.STUDENT
-  }
-}
+export const DROP_USER = 'DROP_USER';
 
 function _registerUser(profile) {
   return {
@@ -26,40 +22,62 @@ function _registerUser(profile) {
 export function registerUser(name) {
   return (dispatch, getState) => {
     const newProfile = createNewProfile(name);
-    dispatch(_registerUser(newProfile));
     return usersRef.push(newProfile, function(error) {
       if(error) { 
         console.log(error);
       }
+      dispatch(_registerUser(newProfile));
     })
   }
 }
 
-// turn object into array with a new key _id
-// _id is added to deal easily with firebase
-function _transform(data) {
-  let results = [];
-  for(let i in data) {
-    results.push(assign({},
-      data[i], 
-      { _id : i }
-    ))
+function _registerSeat(newSeat) {
+  return {
+    type: REGISTER_SEAT,
+    newSeat: newSeat,
   }
-  return results;
 }
 
-function _syncUser(data) {
+export function registerSeat() {
+  return (dispatch, getState) => {
+    const newSeat = createNewSeat();
+    return seatsRef.push(newSeat, function(error) {
+      if(error) {
+        console.log(error)
+      }
+      dispatch(_registerSeat(newSeat))
+    })
+  }
+}
+
+function _syncData(data) {
   return {
     type: SYNC_DATA,
-    userData: _transform(data)
+    data: { 
+      users: _transform(data.users),
+      seats: _transform(data.seats)
+    }
   }
 }
 
 export function syncData() {
   return (dispatch, getState) => {
-    usersRef
+    baseRef
       .on('value', function(data) {
-        dispatch(_syncUser(data.val()))
+        if(data.val()) {
+          dispatch(_syncData(data.val()))
+        }
       })
+  }
+}
+
+export function dropUser(seatId, user) {
+  return (dispatch, getState) => {
+    seatsRef.child(seatId).update({
+      lastDroppedItem: user.name
+    });
+    usersRef.child(user._id).update({
+      isDropped: true
+    });
   }
 }

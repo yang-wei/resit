@@ -15,33 +15,30 @@ export default class DndContainer extends Component {
   }
 
   render() {
-    const { users, seats } = this.props;
+    const { users, seats, handleDrop } = this.props;
     return (
       <div>
         <h1>Resit</h1>
         <div style={{ overflow: 'hidden', clear: 'both' }}>
-          {seats.map(({ accepts, lastDroppedItem }, index) =>
+          {seats.map(({ accepts, lastDroppedItem, _id }, index) =>
             <Dustbin accepts={accepts}
                      lastDroppedItem={lastDroppedItem}
-                     onDrop={(item) => this.handleDrop(index, item)}
+                     onDrop={(item) => handleDrop(_id, item)}
                      idx={index + 1}
                      key={index} />
           )}
         </div>
         <div style={{ overflow: 'hidden', clear: 'both' }}>
-          {users.map(({ name, type, seatNumber }, index) =>
-            <Box name={name}
+          {users.map(({ _id, name, type, isDropped }, index) =>
+            <Box _id={_id}
+                 name={name}
                  type={type}
-                 isDropped={this.isDropped(seatNumber)}
+                 isDropped={isDropped}
                  key={index} />
           )}
         </div>
 
       </div>
     );
-  }
-
-  handleDrop(index, item) {
-    console.log(item.name + ' is dropeed !');
   }
 }

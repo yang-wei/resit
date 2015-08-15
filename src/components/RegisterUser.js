@@ -1,12 +1,23 @@
 import React, { findDOMNode, Component, PropTypes } from 'react';
+import Modal from 'react-modal';
+
+Modal.setAppElement(document.getElementById('root'));
+Modal.injectCSS();
 
 export default class RegisterUser extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { modalIsOpen: true };
+  }
+
   render() {
     return (
-      <form onSubmit={::this.handleSubmit}>
-        <input type='text' placeholder='Name' ref='name' />
-        <input type='submit' value='Post' />
-      </form>
+      <Modal isOpen={this.state.modalIsOpen}>
+        <form onSubmit={::this.handleSubmit}>
+          <input type='text' placeholder='Name' ref='name' />
+          <input type='submit' value='Post' />
+        </form>
+      </Modal>
     );
   }
   
@@ -20,7 +31,12 @@ export default class RegisterUser extends Component {
     // add to firebase
     this.props.onSubmit(name)
     node.value = '';
+    this.closeModal()
     return;
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false })
   }
 
 }
