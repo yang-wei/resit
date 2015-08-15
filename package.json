@@ -41,6 +41,8 @@
     "lodash": "^3.10.1",
     "react": "^0.13.0",
     "react-dnd": "^1.1.4",
-    "react-dragula": "^1.0.6"
+    "react-dragula": "^1.0.6",
+    "react-redux": "^0.8.2",
+    "redux": "^1.0.0"
   }
 }
