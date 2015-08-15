@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Container from './Container';
+import Knight from './Knight';
 
 export default class App extends Component {
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <div className='container'>
+        <h1>Resit</h1>  
+        <Container />
+      </div>
     );
   }
 }
