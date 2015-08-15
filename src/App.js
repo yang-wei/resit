@@ -1,14 +1,30 @@
-import React, { Component } from 'react';
-import Container from './Container';
-import Knight from './Knight';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { registerUser } from './actions';
+import RegisterUser from './components/RegisterUser';
+import DndContainer from './components/DndContainer';
 
-export default class App extends Component {
+class App extends Component {
   render() {
+
+    const { dispatch } = this.props;
+
     return (
-      <div className='container'>
-        <h1>Resit</h1>  
-        <Container />
+      <div>
+        <DndContainer
+          users={this.props.users}
+          seats={this.props.seats}
+        />
+        <RegisterUser
+          onSubmit={name => dispatch(registerUser(name))}
+        />
       </div>
     );
   }
 }
+
+function select(state) {
+  return state;
+}
+
+export default connect(select)(App);

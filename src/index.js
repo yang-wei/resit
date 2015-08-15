@@ -1,4 +1,13 @@
 import React from 'react';
-import App from './App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-React.render(<App />, document.getElementById('root'));
+import App from './App';
+import resitApp from './reducers';
+
+React.render(
+  <Provider store={createStore(resitApp)}>
+    {() => <App/>} 
+  </Provider>,
+  document.getElementById('root')
+);
