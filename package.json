@@ -1,7 +1,7 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "resit",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "Sample application of React + Redux + Firebase",
   "scripts": {
     "start": "node server.js",
     "clean": "rm -rf dist",
@@ -11,25 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/yang-wei/resit.git"
   },
   "keywords": [
     "react",
     "reactjs",
-    "boilerplate",
     "hot",
     "reload",
-    "hmr",
     "live",
-    "edit",
-    "webpack"
+    "resit"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Lim Yang Wei <yangweilim21@gmail.com> (http://github.com/yang-wei)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
-  },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "http://yang-wei.github.io/resit",
   "devDependencies": {
     "babel-core": "^5.4.7",
     "babel-eslint": "^3.1.9",
