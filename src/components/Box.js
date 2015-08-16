@@ -1,12 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { DragSource } from 'react-dnd';
+import { Paper } from 'material-ui';
 
 const style = {
-  border: '1px dashed gray',
-  backgroundColor: 'white',
+  border: '1px solid rgb(128, 203, 196)',
+  color: 'rgb(128, 203, 196)',
   padding: '0.5rem 1rem',
   marginRight: '1.5rem',
-  marginBottom: '1.5rem',
+  marginBottom: '0.5rem',
   cursor: 'move',
   float: 'left'
 };
@@ -38,13 +39,13 @@ export default class Box extends Component {
     const opacity = isDragging ? 0.4 : 1;
 
     return isDropped ?
-          (<div style={{ ...style, opacity }}>
+          (<Paper style={{ ...style, opacity, 'color': 'grey' }}>
             <s>{name}</s>
-          </div>) :
+          </Paper>) :
           connectDragSource(
-            <div style={{ ...style, opacity }}>
+            <Paper style={{ ...style, opacity }}>
               {name}
-            </div>
+            </Paper>
          );
   }
 }

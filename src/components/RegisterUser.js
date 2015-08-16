@@ -29,7 +29,7 @@ export default class RegisterUser extends Component {
     ];
 
     return (
-      <Dialog dialogOpenStyle={{textAlign: 'center'}} modal={true} actions={actions} actionFocus='submit' openImmediately={this.props.openImmediately} ref="formDialog">
+      <Dialog style={{textAlign: 'center'}} modal={true} actions={actions} actionFocus='submit' openImmediately={this.props.openImmediately} ref="formDialog">
         <TextField hintText='Enter Your Name' ref='name' />
       </Dialog>
     );
@@ -49,7 +49,6 @@ export default class RegisterUser extends Component {
   }
 
   closeModal() {
-    console.log(this.refs.formDialog)
     this.refs.formDialog.dismiss();
   }
 

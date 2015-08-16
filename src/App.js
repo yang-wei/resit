@@ -6,6 +6,13 @@ import DndContainer from './components/DndContainer';
 import mui from 'material-ui';
 
 let ThemeManager = new mui.Styles.ThemeManager();
+ThemeManager.setTheme(ThemeManager.types.DARK);
+
+const containerStyle = {
+  width: '900px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+}
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div style={containerStyle}>
         <DndContainer
           users={this.props.users}
           seats={this.props.seats}

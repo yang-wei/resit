@@ -1,11 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import { Paper } from 'material-ui';
+import { appColor } from '../constants';
 
 const style = {
-  height: '12rem',
-  width: '12rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
+  height: '5rem',
+  width: '12%',
+  marginRight: '0.5%',
+  marginBottom: '0.5rem',
   color: 'white',
   padding: '1rem',
   textAlign: 'center',
@@ -13,6 +15,7 @@ const style = {
   lineHeight: 'normal',
   float: 'left'
 };
+
 
 const dustbinTarget = {
   drop(props, monitor) {
@@ -41,14 +44,17 @@ export default class Dustbin extends Component {
     const didDrop = lastDroppedItem !== null;
     const canDrop = isOver && !didDrop;
 
-    let backgroundColor = '#222';
+    let backgroundColor = '#fff';
+    let color = appColor.main
     if (canDrop) {
-      backgroundColor = 'darkgreen';
+      backgroundColor = appColor.main;
+      color = appColor.white
     } else if (didDrop) {
-      backgroundColor = 'darkkhaki';
+      backgroundColor = appColor.main;
+      color = appColor.white
     }
     return connectDropTarget(
-      <div style={{ ...style, backgroundColor }}>
+      <Paper style={{ ...style, backgroundColor, color }}>
 
         {canDrop ?
           'Release to drop' :
@@ -56,9 +62,9 @@ export default class Dustbin extends Component {
         }
 
         {lastDroppedItem &&
-          <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
+          <p>{lastDroppedItem}</p>
         }
-      </div>
+      </Paper>
     );
   }
 }
