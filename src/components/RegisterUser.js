@@ -1,46 +1,64 @@
 import React, { findDOMNode, Component, PropTypes } from 'react';
-import Modal from 'react-modal';
+import { Dialog, RaisedButton, TextField } from 'material-ui';
 
-Modal.setAppElement(document.getElementById('root'));
-Modal.injectCSS();
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin()
+
+const buttonStyle = {
+  margin: '0px 10px 10px',
+}
 
 export default class RegisterUser extends Component {
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: true };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   render() {
+    const actions = [
+      <RaisedButton
+        style={buttonStyle}
+        label='Register'
+        secondary={true}
+        onTouchTap={this.handleSubmit} />,
+     <RaisedButton
+        style={buttonStyle}
+        label='Skip'
+        onTouchTap={this.closeModal} />,
+    ];
+
     return (
-      <Modal isOpen={this.state.modalIsOpen}>
-        <form onSubmit={::this.handleSubmit}>
-          <input type='text' placeholder='Name' ref='name' />
-          <input type='submit' value='Post' />
-        </form>
-      </Modal>
+      <Dialog dialogOpenStyle={{textAlign: 'center'}} modal={true} actions={actions} actionFocus='submit' openImmediately={this.props.openImmediately} ref="formDialog">
+        <TextField hintText='Enter Your Name' ref='name' />
+      </Dialog>
     );
   }
   
-  handleSubmit(e) {
-    e.preventDefault();
-    const node = findDOMNode(this.refs.name);
-    const name = node.value.trim();
+  handleSubmit() {
+    const node = this.refs.name;
+    const name = node.getValue().trim();
     if (!name) {
       return;
     }
     // add to firebase
     this.props.onSubmit(name)
-    node.value = '';
+    node.setValue('');
     this.closeModal()
     return;
   }
 
   closeModal() {
-    this.setState({ modalIsOpen: false })
+    console.log(this.refs.formDialog)
+    this.refs.formDialog.dismiss();
   }
 
 }
 
 RegisterUser.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 };
+
+RegisterUser.defaultProps = {
+  openImmediately: true,
+}

@@ -38,11 +38,13 @@
   },
   "dependencies": {
     "firebase": "^2.2.9",
+    "material-ui": "^0.10.4",
     "object-assign": "^3.0.0",
-    "react": "^0.13.0",
+    "react": "^0.13.3",
     "react-dnd": "^1.1.4",
     "react-modal": "^0.3.0",
     "react-redux": "^0.8.2",
+    "react-tap-event-plugin": "^0.1.7",
     "redux": "^1.0.0",
     "redux-logger": "0.0.3",
     "redux-thunk": "^0.1.0"

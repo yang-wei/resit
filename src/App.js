@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { registerUser, registerSeat, syncData, dropUser } from './actions';
 import RegisterUser from './components/RegisterUser';
 import DndContainer from './components/DndContainer';
+import mui from 'material-ui';
+
+let ThemeManager = new mui.Styles.ThemeManager();
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +13,12 @@ class App extends Component {
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleDrop = this._handleDrop.bind(this);
     this._syncData = this._syncData.bind(this);
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    }
   }
 
   componentWillMount() {
@@ -45,6 +54,10 @@ class App extends Component {
   }
 
 }
+
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 
 function mapStateToProp(state) {
   return {

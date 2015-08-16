@@ -32,7 +32,7 @@ export default class Dustbin extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     isOver: PropTypes.bool.isRequired,
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
-    lastDroppedItem: PropTypes.object,
+    lastDroppedItem: PropTypes.string,
     onDrop: PropTypes.func.isRequired,
   };
 
