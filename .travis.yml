@@ -1,8 +1,8 @@
 language: node_js
 node_js:
 - '0.10'
-before_script: chmod ugo+x ./deploy.sh
-script: bash ./deploy.sh
+before_script: chmod ugo+x ./scripts/deploy.sh
+script: bash ./scripts/deploy.sh
 env:
   global:
   - GH_REF: github.com/yang-wei/resit.git
