@@ -3,7 +3,18 @@ import { firebaseUrl, itemTypes } from './constants';
 
 import { _transform, createNewProfile, createNewSeat } from './utils';
 
-const baseRef = new Firebase(firebaseUrl);
+
+var config = {
+  apiKey: "AIzaSyDkpJqTbD3P2XChPUX_Nv-Y22sn0Bs8-G0",
+  authDomain: "vocal-clone-138223.firebaseapp.com",
+  databaseURL: "https://vocal-clone-138223.firebaseio.com",
+  projectId: "vocal-clone-138223",
+  storageBucket: "vocal-clone-138223.appspot.com",
+  messagingSenderId: "530903709359"
+};
+firebase.initializeApp(config);
+
+const baseRef = firebase.database().ref();
 const usersRef = baseRef.child('users');
 const seatsRef = baseRef.child('seats');
 
